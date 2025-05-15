@@ -1,0 +1,287 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@layer utilities {
+  .bg-opacity-50 {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+:root {
+  --primary: #0052ff;
+}
+
+.light {
+  --primary: #0052ff;
+  --background: #ffffff;
+  --main-text: #000000;
+  --main-muted: #4b5563;
+  --footer: #e6e6e6;
+  --chat-back: #1a1a1a;
+  --bot-back: #5da3da;
+  --nft-color: #50b72f;
+  --market-color: #802ebd;
+}
+
+.dark {
+  --primary: #0052ff;
+  --background: #000000;
+  --main-text: white;
+  --main-muted: #e5e7eb;
+  --footer: #1a1a1a;
+  --chat-back: #ffffff;
+  --bot-back: #5da3da;
+  --nft-color: #50b72f;
+  --market-color: #802ebd;
+}
+
+header,
+body {
+  font-family: "Poppins", serif;
+  overflow-x: hidden !important;
+}
+h1,
+h2,
+h3 {
+  /* font-family: "poppins" !important; */
+  font-weight: bold !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
+.container {
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+/************************* Timeline ***********************/
+
+#timeline p {
+  padding: 1rem 0 1rem 1rem;
+  color: #000;
+}
+
+#timeline button {
+  margin: 0.5rem 0rem 1rem 1rem;
+  outline: none;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  background: transparent;
+  transition: all 0.3s ease-in;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+#timeline button:hover {
+  background-color: #17202a;
+  color: #fff;
+}
+
+#timeline ul {
+  padding: 50px 0;
+}
+
+/* create a line */
+#timeline ul li {
+  list-style: none;
+  position: relative;
+  width: 7px;
+  margin: 0 auto;
+  padding-top: 50px;
+  background-color: #58d68e;
+}
+
+#timeline ul li .box {
+  position: relative;
+  bottom: 0;
+  width: 450px;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  transform: translateX(400%);
+  transition: all 0.5s ease-in-out;
+}
+
+/* right side */
+#timeline ul li:nth-child(odd) .box {
+  left: 50px;
+}
+
+/* left side */
+#timeline ul li:nth-child(even) .box {
+  left: -500px;
+  transform: translateX(-400%);
+}
+
+#timeline ul li .box.show {
+  transform: translateX(0%);
+  transition: all 0.5s ease-in-out;
+}
+
+#timeline ul li i {
+  position: absolute;
+  left: 50%;
+  top: 20;
+  width: 45px;
+  height: 45px;
+  background: #2c3e50;
+  transform: translateX(-50%);
+  border-radius: 50%;
+}
+
+#timeline .fa-brands,
+#timeline .fa-solid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  color: #f4d03f;
+}
+
+/* arrow */
+#timeline .box:before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  width: 0;
+  right: 0;
+  border-style: solid;
+}
+
+#timeline ul li:nth-child(odd) .box:before {
+  left: -15px;
+  border-width: 8px 16px 8px 0;
+  border-color: transparent #de3163;
+}
+
+#timeline ul li:nth-child(even) .box:before {
+  right: -15px;
+  border-width: 8px 0px 8px 16px;
+  border-color: transparent #de3163;
+}
+
+@media (max-width: 900px) {
+  #timeline ul li .box {
+    width: 350px;
+  }
+
+  #timeline ul li:nth-child(even) .box:beofre {
+    left: -15px;
+    border-width: 8px 16px 8px 0px;
+    border-color: transparent #de3163;
+  }
+
+  /* right side */
+  #timeline ul li:nth-child(odd) .box {
+    left: 40px;
+  }
+
+  /* left side */
+  #timeline ul li:nth-child(even) .box {
+    left: -390px;
+  }
+}
+
+@media (max-width: 768px) {
+  #timeline ul li {
+    margin-left: 30px;
+  }
+
+  #timeline ul li .box {
+    width: calc(100vw -90px);
+  }
+
+  /* left side conte */
+  #timeline ul li:nth-child(even) .box {
+    left: 40px;
+  }
+
+  #timeline ul li:nth-child(even) .box:before {
+    left: -15px;
+    border-width: 8px 16px 8px 0px;
+    border-color: transparent #de3163;
+  }
+}
+
+/************************* NFT Generator ***********************/
+
+.nft-loader {
+  position: relative;
+  width: 350px;
+  height: 350px;
+}
+
+.nft-loader .logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nft-loader .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.nft-loader .circle:nth-child(2) {
+  width: 55%;
+  height: 55%;
+  border-top: 2px solid var(--primary);
+  animation-name: spin-clockwise;
+}
+
+.nft-loader .circle:nth-child(3) {
+  width: 65%;
+  height: 65%;
+  border-top: 2px solid var(--primary);
+  animation-name: spin-counterclockwise;
+}
+
+.nft-loader .circle:nth-child(4) {
+  width: 75%;
+  height: 75%;
+  border-top: 2px solid var(--primary);
+  animation-name: spin-clockwise;
+}
+
+.nft-loader .circle:nth-child(5) {
+  width: 85%;
+  height: 85%;
+  border-top: 2px solid var(--primary);
+  animation-name: spin-counterclockwise;
+}
+
+@keyframes spin-clockwise {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes spin-counterclockwise {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
